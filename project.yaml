@@ -15,6 +15,8 @@ spec:
     name: auto-trainer
   - url: hub://v2-model-server
     name: serve
+  - url: hub://v2-model-server-2
+    name: serve-2
   - url: hub://describe
     name: describe
   - url: gen_iris.py
@@ -23,6 +25,12 @@ spec:
     handler: iris_generator
     requirements:
     - requests
+  - url: gen_iris.py
+    name: gen-iris-2
+    image: mlrun/mlrun
+    handler: iris_generator
+    requirements:
+    - requests==0.0.0
   workflows:
   - name: main
     path: ./kflow.py
@@ -30,6 +38,15 @@ spec:
   - name: newflow
     path: ./newflow.py
     handler: newpipe
+  - name: newflowshort
+    path: ./newflowshort.py
+    handler: newpipeshort
+  - name: newflowshortfailbuild
+    path: ./newflowshortfailbuild.py
+    handler: newpipeshort
+  - name: newflowshortfaildeploy
+    path: ./newflowshortfaildeploy.py
+    handler: newpipeshort
   artifacts:
   - kind: artifact
     metadata:
