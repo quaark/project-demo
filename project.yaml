@@ -15,8 +15,6 @@ spec:
     name: auto-trainer
   - url: hub://v2-model-server
     name: serve
-  - url: hub://v2-model-server-2
-    name: serve-2
   - url: hub://describe
     name: describe
   - url: gen_iris.py

@@ -68,8 +68,10 @@ def newpipeshort():
     print(train.outputs)
 
     # deploy our model as a serverless function, we can pass a list of models to serve
+    project.get_function("serve").add_model(key = f"{DATASET}:v1",
+		class_name = "bad_class",
+		model_path = train.outputs["model"])
     deploy = deploy_function(
-        "serve-2",
-        models=[{"key": f"{DATASET}:v1", "model_path": train.outputs["model"]}],
+        project.get_function("serve")
     )
 
